@@ -1,0 +1,10 @@
+/home/kai/IdeaProjects/The-Voodoo-Chimpmunks/ASWS/src/main/java/com/example/ASWS/repositories/ContactRepository.java
+/home/kai/IdeaProjects/The-Voodoo-Chimpmunks/ASWS/src/main/java/com/example/ASWS/LoadDatabase.java
+/home/kai/IdeaProjects/The-Voodoo-Chimpmunks/ASWS/src/main/java/com/example/ASWS/models/Customer.java
+/home/kai/IdeaProjects/The-Voodoo-Chimpmunks/ASWS/src/main/java/com/example/ASWS/exceptions/CustomerNotFoundException.java
+/home/kai/IdeaProjects/The-Voodoo-Chimpmunks/ASWS/src/main/java/com/example/ASWS/controllers/ContactController.java
+/home/kai/IdeaProjects/The-Voodoo-Chimpmunks/ASWS/src/main/java/com/example/ASWS/exceptions/ContactNotFoundException.java
+/home/kai/IdeaProjects/The-Voodoo-Chimpmunks/ASWS/src/main/java/com/example/ASWS/repositories/CustomerRepository.java
+/home/kai/IdeaProjects/The-Voodoo-Chimpmunks/ASWS/src/main/java/com/example/ASWS/controllers/CustomerController.java
+/home/kai/IdeaProjects/The-Voodoo-Chimpmunks/ASWS/src/main/java/com/example/ASWS/models/Contact.java
+/home/kai/IdeaProjects/The-Voodoo-Chimpmunks/ASWS/src/main/java/com/example/ASWS/AswsApplication.java
