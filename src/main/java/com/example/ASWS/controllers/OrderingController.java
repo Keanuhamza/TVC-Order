@@ -22,24 +22,24 @@ public class OrderingController {
   // Aggregate root
   // tag::get-aggregate-root[]
   @GetMapping("/orders")
-  List<Order> all() {
+  List<cOrder> all() {
     return orderService.getAllOrders();
   }
   // end::get-aggregate-root[]
 
   @PostMapping("/order")
-  Order newOrder(@RequestBody Order newOrder) {
+  cOrder newOrder(@RequestBody cOrder newOrder) {
     return orderService.addOrder(newOrder);
   }
 
   // Single item
   @GetMapping("/order/{id}")
-  Order one(@PathVariable Long id) {
+  cOrder one(@PathVariable Long id) {
     return orderService.getOrder(id);
   }
 
   @PutMapping("/order/{id}")
-  Order replaceOrder(@RequestBody Order order, @PathVariable Long id) {
+  cOrder replaceOrder(@RequestBody cOrder order, @PathVariable Long id) {
     return orderService.updateOrder(order, id);
   }
 

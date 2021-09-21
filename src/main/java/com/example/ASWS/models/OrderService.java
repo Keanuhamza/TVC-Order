@@ -15,25 +15,25 @@ public class OrderService {
         this.repository = repository;
     }
 
-    public Order addOrder(Order order) {   
+    public cOrder addOrder(cOrder order) {   
         return repository.save(order);
     }
 
-    public Order getOrder(Long id) {   
+    public cOrder getOrder(Long id) {   
         return repository.findById(id).orElseThrow(() -> new OrderNotFoundException(id));
     }
 
-    public List<Order> getAllOrders() {   
+    public List<cOrder> getAllOrders() {   
         return repository.findAll();
     }
 
-    public Order updateOrder(Order newOrder, Long id) {
+    public cOrder updateOrder(cOrder newOrder, Long id) {
     return repository.findById(id)
-      .map(order -> {
-        order.setCustID(newOrder.getCustID());
-        order.setProductName(newOrder.getProductName());
-        order.setQuantity(newOrder.getQuantity());
-        return repository.save(order);
+      .map(cOrder -> {
+        cOrder.setCustID(newOrder.getCustID());
+        cOrder.setProductName(newOrder.getProductName());
+        cOrder.setQuantity(newOrder.getQuantity());
+        return repository.save(cOrder);
       })
       .orElseGet(() -> {
         newOrder.setId(id);

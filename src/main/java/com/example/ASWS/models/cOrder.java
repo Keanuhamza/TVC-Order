@@ -3,7 +3,7 @@ package com.example.ASWS.models;
 import javax.persistence.*;
 
 @Entity
-public class Order {
+public class cOrder {
 	
     private @Id @GeneratedValue Long id;
     private Long custID;
@@ -14,8 +14,8 @@ public class Order {
 	private int quantity;
     
 	//Constructors
-	public Order() {}
-	public Order(Long id, Long custID, String productName, int quantity) {
+	public cOrder() {}
+	public cOrder(Long id, Long custID, String productName, int quantity) {
 		this.id = id;
 		this.custID = custID;
 		this.productName = productName;
@@ -25,7 +25,7 @@ public class Order {
 		custAddress = "null";
 		custPhone = 0L;
 	}
-	public Order(Long id, Long custID, 
+	public cOrder(Long id, Long custID, 
 	String custAddress, Long custPhone, 
 	String productName, float prodPrice, int quantity) {
 		this.id = id;
@@ -83,7 +83,7 @@ public class Order {
 	
 	//Overrides
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return "Order{" +
 				"id=" + id +
 				", custID=" + custID +
@@ -99,8 +99,8 @@ public class Order {
 		if (this == object) return true;
 		if (object == null || getClass() != object.getClass()) return false;
 		if (!super.equals(object)) return false;
-		Order order = (Order) object;
-		return java.lang.Float.compare(order.prodPrice, prodPrice) == 0 && 
+		cOrder order = (cOrder) object;
+		return Float.compare(order.prodPrice, prodPrice) == 0 &&
         quantity == order.quantity && 
         java.util.Objects.equals(id, order.id) && 
         java.util.Objects.equals(custID, order.custID) && 
