@@ -1,11 +1,6 @@
 package com.example.ASWS.models;
 
-import org.springframework.boot.SpringApplication;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
-import java.util.InputMismatchException;
-import java.util.Objects;
-import java.util.Scanner;
 
 @Entity
 public class Order {
@@ -24,6 +19,21 @@ public class Order {
 		this.id = id;
 		this.custID = custID;
 		this.productName = productName;
+		this.quantity = quantity;
+
+		prodPrice = 0f;
+		custAddress = "null";
+		custPhone = 0L;
+	}
+	public Order(Long id, Long custID, 
+	String custAddress, Long custPhone, 
+	String productName, float prodPrice, int quantity) {
+		this.id = id;
+		this.custID = custID;
+		this.custAddress = custAddress;
+		this.custPhone = custPhone;
+		this.productName = productName;
+		this.prodPrice = prodPrice;
 		this.quantity = quantity;
 	}
 
@@ -72,7 +82,7 @@ public class Order {
 	}
 	
 	//Overrides
-	@java.lang.Override
+	@Override
 	public java.lang.String toString() {
 		return "Order{" +
 				"id=" + id +
@@ -84,7 +94,7 @@ public class Order {
 				", quantity=" + quantity +
 				'}';
 	}
-
+	@Override
 	public boolean equals(Object object) {
 		if (this == object) return true;
 		if (object == null || getClass() != object.getClass()) return false;
@@ -99,6 +109,7 @@ public class Order {
         java.util.Objects.equals(productName, order.productName);
 	}
 
+	@Override
 	public int hashCode() {
 		return java.util.Objects.hash(super.hashCode(), id, custID, custAddress, custPhone, productName, prodPrice, quantity);
 	}

@@ -1,6 +1,5 @@
 package com.example.ASWS;
 
-import com.example.ASWS.models.*;
 import com.example.ASWS.repositories.*;
 
 import org.slf4j.Logger;
@@ -19,6 +18,12 @@ public class LoadDatabase {
   CommandLineRunner initDatabase(OrderRepository repository) {
 
     return args -> {
+      /*log.info("Preloading " + 
+      repository.save(
+        new com.example.ASWS.models.Order(
+          1L, 40L, "33 Evergreen NSW 3088", 20L, "Hammer", 40f, 10
+          ))); */
+      
       };
   } 
 
