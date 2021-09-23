@@ -1,48 +1,71 @@
 package com.example.ASWS.models;
 import com.example.ASWS.repositories.*;
 import com.example.ASWS.exceptions.*;
-import com.example.ASWS.models.Contact;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class OrderService {
     
     private final OrderRepository repository;
 
+    private ApplicationEventPublisher publisher;
+
+    @Autowired
+    public void QuoteService(ApplicationEventPublisher publisher) {
+        this.publisher = publisher;
+    }
+
     OrderService(OrderRepository repository) {
         this.repository = repository;
     }
-
     
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
-      return builder.build();
-	  
+      return builder.build(); 
     }
 
-    public Customer sendRequest(RestTemplate restTemplate, Long i) throws Exception {
+    public Customer sendRequestCustomer(RestTemplate restTemplate, Long i) throws Exception {
       Customer customer = restTemplate.getForObject("http://localhost:8094/customer/" + i, Customer.class);  
       return customer;
+    }
+
+    public float sendRequestCheckInventory(RestTemplate restTemplate, String productName, int quantity) throws Exception {
+      float cost = restTemplate.getForObject("http://localhost:8097/product/" + productName + "/quantity/" + quantity, float.class);  
+      return cost;
     }
    
     public String addOrder(cOrder order) {
         boolean successRetrieved = false;
         try {
-          Customer customer = sendRequest(new RestTemplate(), order.getCustID());
+          // validating customer ID
+          Customer customer = sendRequestCustomer(new RestTemplate(), order.getCustID());
           successRetrieved = true;
           order.setCustAddress(customer.getCompanyName());
           order.setCustPhone(customer.getContact().getPhone());
-          repository.save(order);
+
+          // check inventory
+          float price = sendRequestCheckInventory(new RestTemplate(), order.getProductName(), order.getQuantity());
+          
+          switch ((int)price) {
+            case  -1:
+              return "Not enough stock for product: " + order.getProductName();
+            case  -2:
+              return "Product doesn't exist: " + order.getProductName();
+            default:
+              order.setProdPrice(price);
+              break;
+          }
+
+          publisher.publishEvent(order);
+          
           return "Successfully added order: " + order.toString();
         } catch (Exception e) {
           e.printStackTrace();
