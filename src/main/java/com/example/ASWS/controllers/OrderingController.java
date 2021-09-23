@@ -3,6 +3,7 @@ package com.example.ASWS.controllers;
 import java.util.List;
 
 import com.example.ASWS.models.*;
+import com.example.ASWS.services.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,9 +39,15 @@ public class OrderingController {
     return orderService.getOrder(id);
   }
 
-  @PutMapping("/order/{id}")
-  cOrder replaceOrder(@RequestBody cOrder order, @PathVariable Long id) {
-    return orderService.updateOrder(order, id);
+  // Single item
+  @GetMapping("/getCustomer/{id}")
+  Customer oneCustomer(@PathVariable Long id) {
+    return orderService.getCustomer(id);
+  }
+
+  @GetMapping("/getProduct/{id}")
+  Product oneProduct(@PathVariable Long id) {
+    return orderService.getProduct(id);
   }
 
   @DeleteMapping("/order/{id}")
