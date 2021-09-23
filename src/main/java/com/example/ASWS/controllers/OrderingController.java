@@ -28,7 +28,7 @@ public class OrderingController {
   // end::get-aggregate-root[]
 
   @PostMapping("/order")
-  cOrder newOrder(@RequestBody cOrder newOrder) {
+  String newOrder(@RequestBody cOrder newOrder) {
     return orderService.addOrder(newOrder);
   }
 
