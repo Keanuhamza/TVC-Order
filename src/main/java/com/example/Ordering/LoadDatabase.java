@@ -18,11 +18,13 @@ public class LoadDatabase {
   CommandLineRunner initDatabase(OrderRepository repository) {
 
     return args -> {
-      log.info("Preloading " + 
+      
+
+      log.info("Preloading " /*+ 
       repository.save(
         new com.example.Ordering.models.cOrder(
           1L, 40L, "33 Evergreen NSW 3088", 20L, "Hammer", 40f, 10
-          ))); 
+          ))*/); // preloading an order isn't necessary
       
       };
   } 

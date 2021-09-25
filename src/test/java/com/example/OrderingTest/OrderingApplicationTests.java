@@ -1,4 +1,4 @@
-package com.example.ASWS;
+package com.example.OrderingTest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
