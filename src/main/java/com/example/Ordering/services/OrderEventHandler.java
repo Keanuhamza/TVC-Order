@@ -23,11 +23,13 @@ public class OrderEventHandler {
         this.orderRepository = orderRepository;
     }
 
+    // method call the product microservice and update the quantity
     public void updateQuantity(RestTemplate restTemplate, String productName, int quantity) throws Exception {
         String status = restTemplate.getForObject("http://localhost:8097/product/" + productName + "/updateQuantity/" + quantity, String.class);  
         System.out.println(status);
     }
 
+    // handle the event of order being processed
     @EventListener
     public void handle(cOrder order) {
         // update quantity 

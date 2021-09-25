@@ -15,6 +15,7 @@ public class cOrder {
     
 	//Constructors
 	public cOrder() {}
+
 	public cOrder(Long id, Long custID, String productName, int quantity) {
 		this.id = id;
 		this.custID = custID;
@@ -25,6 +26,7 @@ public class cOrder {
 		custAddress = "null";
 		custPhone = 0L;
 	}
+
 	public cOrder(Long id, Long custID, 
 	String custAddress, Long custPhone, 
 	String productName, float prodPrice, int quantity) {

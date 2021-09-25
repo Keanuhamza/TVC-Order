@@ -50,7 +50,8 @@ public class OrderService {
       Product prod = restTemplate.getForObject("http://localhost:8097/productN/" + productName, Product.class);  
       return prod;
     }
-   
+    
+    // process a new order
     public String addOrder(cOrder order) {
         boolean successRetrieved = false;
         try {
