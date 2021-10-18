@@ -66,9 +66,9 @@ public class OrderService {
           
           switch ((int)price) {
             case  -1:
-              return "Not enough stock for product: " + order.getProductName();
+              throw new NotEnoughStockException(order.getProductName());
             case  -2:
-              return "Product doesn't exist: " + order.getProductName();
+              throw new OrderNameNotFoundException(order.getProductName());
             default:
               order.setProdPrice(price);
               break;
@@ -76,7 +76,6 @@ public class OrderService {
           
           // handle event
           publisher.publishEvent(order);
-          
 
           return "Successfully added order: " + order.toString();
         } catch (Exception e) {
