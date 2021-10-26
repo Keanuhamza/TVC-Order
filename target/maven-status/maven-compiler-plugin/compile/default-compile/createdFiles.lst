@@ -1,9 +1,7 @@
 com/example/Ordering/exceptions/ProductNotFoundExcpetion.class
 com/example/Ordering/exceptions/OrderNameNotFoundException.class
 com/example/Ordering/LoadDatabase.class
-com/example/Ordering/exceptions/CustomerIDNotFoundException.class
 com/example/Ordering/models/Product.class
-com/example/Ordering/exceptions/CustomerDetailNotFoundException.class
 com/example/Ordering/models/cOrder.class
 com/example/Ordering/exceptions/NotEnoughStockException.class
 com/example/Ordering/models/Customer.class
