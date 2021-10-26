@@ -6,7 +6,6 @@
 /home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/services/OrderService.java
 /home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/models/Product.java
 /home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/models/ProductDetail.java
-/home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/exceptions/CustomerDetailNotFoundException.java
 /home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/services/OrderEventHandler.java
 /home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/models/cOrder.java
 /home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/exceptions/OrderNameNotFoundException.java
@@ -14,4 +13,3 @@
 /home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/OrderingApplication.java
 /home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/controllers/OrderingController.java
 /home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/exceptions/OrderNotFoundException.java
-/home/kai/IdeaProjects/TVC-Ordering/src/main/java/com/example/Ordering/exceptions/CustomerIDNotFoundException.java
