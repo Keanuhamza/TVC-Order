@@ -59,7 +59,7 @@ public class OrderService {
           Customer customer = sendRequestCustomer(new RestTemplate(), order.getCustID());
           successRetrieved = true;
           order.setCustAddress(customer.getCompanyName());
-          order.setCustPhone(customer.getContact().getPhone());
+          //order.setCustPhone(customer.getContact().getPhone());
 
           // check inventory
           float price = sendRequestCheckInventory(new RestTemplate(), order.getProductName(), order.getQuantity());

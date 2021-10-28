@@ -30,6 +30,7 @@ public class OrderingController {
 
   @PostMapping("/order")
   String newOrder(@RequestBody cOrder newOrder) {
+    System.out.println("Sending REST request");
     return orderService.addOrder(newOrder);
   }
 

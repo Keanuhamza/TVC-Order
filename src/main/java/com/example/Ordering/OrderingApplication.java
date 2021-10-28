@@ -20,13 +20,14 @@ import java.util.function.Consumer;
 
 @SpringBootApplication
 public class OrderingApplication {
-	private static final Logger log = LoggerFactory.getLogger(OrderingApplication.class);
+	
 	public static void main(String[] args) {
 		SpringApplication.run(OrderingApplication.class, args);
 		System.out.println("Ordering micro-service has started!");
 	}
+	
 	@Bean
-	public CommandLineRunner run(StreamBridge streamBridge) throws Exception {
+	public CommandLineRunner run() throws Exception {
 		return args -> {
 			Long i = 1L;
 			try {
@@ -42,14 +43,14 @@ public class OrderingApplication {
 					max = 1;
 					upperBound = max - min + 1;
 					int rNum2 = min + rng.nextInt(upperBound);
-					String stor[] = {"Hammer","Steel copper alloy"};
+					String PRODUCTNAME = "Hammer";
 
-					System.out.println(rNum1 + ": " + stor[rNum2]);
+					System.out.println(rNum1 + ": " + PRODUCTNAME);
 
-					cOrder order = new cOrder(i, rNum1, stor[rNum2], 1);
-					log.info(order.toString());
+					cOrder order = new cOrder(i, 1L, PRODUCTNAME, 2);
+					//og.info(order.toString());
 					//The binder name "appliance-outbound" is defined in the application.yml.
-					streamBridge.send("appliance-outbound", order);
+					postOrder(new RestTemplate(), order);
 
 					i = i + 1L;
 				}
@@ -57,6 +58,15 @@ public class OrderingApplication {
 			catch(Exception ignored){}
 			return;
 		};
+	}
+
+	// get customer
+    public void postOrder(RestTemplate restTemplate, cOrder order) throws Exception {
+		System.out.println("Sending request");
+		//String message = restTemplate.getForObject("http://localhost:8181/order" + order, String.class);  
+		String message = restTemplate.postForObject("http://localhost:8181/order", order, String.class);
+		System.out.println("Request sent");
+		System.out.println(message);
 	}
 }
 
