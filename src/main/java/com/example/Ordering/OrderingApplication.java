@@ -31,28 +31,33 @@ public class OrderingApplication {
 		return args -> {
 			Long i = 1L;
 			try {
-				while (i < 20L){
+				while (!Thread.currentThread().isInterrupted()){
 					//RNG for order
 					Random rng = new Random();
 					int min = 1;
 					int max = 5;
 					int upperBound = max - min + 1;
-					long rNum1 = min + rng.nextInt(upperBound);
+					long rCustomer = min + rng.nextInt(upperBound);
 					//Generates random product name from array
 					min = 0;
-					max = 1;
+					max = 4;
 					upperBound = max - min + 1;
-					int rNum2 = min + rng.nextInt(upperBound);
-					String PRODUCTNAME = "Hammer";
+					int rProudct = min + rng.nextInt(upperBound);
+					min = 1;
+					max = 10;
+					int rQuantity = min + rng.nextInt(upperBound);
 
-					System.out.println(rNum1 + ": " + PRODUCTNAME);
+					String[] productList = {"Hammer","Spanner","Cake","Apple","Orange"};
 
-					cOrder order = new cOrder(i, 1L, PRODUCTNAME, 2);
+					System.out.println(rCustomer + ": " + productList[rProudct]);
+
+					cOrder order = new cOrder(i, rCustomer, productList[rProudct], rQuantity);
 					//og.info(order.toString());
 					//The binder name "appliance-outbound" is defined in the application.yml.
 					postOrder(new RestTemplate(), order);
 
-					i = i + 1L;
+					i++;
+					Thread.sleep(1200);
 				}
 			}
 			catch(Exception ignored){}
