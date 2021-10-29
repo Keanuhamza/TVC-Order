@@ -81,12 +81,14 @@ public class OrderService {
         } catch (Exception e) {
           e.printStackTrace();
           if (successRetrieved) {
+          
             return "Error, Customer does not have Contact details";
           }
           return "Error, Customer ID not valid";
         }
     }
 
+    // method to get a customer
     public Customer getCustomer(Long id) {
       Long custID = repository.findById(id).orElseThrow(() -> new OrderNotFoundException(id)).getCustID();
       
@@ -100,7 +102,7 @@ public class OrderService {
     }
 
     public Product getProduct(Long id) {
-      String productName = repository.findById(id).orElseThrow(() -> new OrderNotFoundException(id)).getProductName();
+      String productName = repository.findById(id).orElseThrow(() -> new ProductNotFoundExcpetion(id)).getProductName();
       try {
         Product product = sendRequestProduct(new RestTemplate(),productName);
         return product;

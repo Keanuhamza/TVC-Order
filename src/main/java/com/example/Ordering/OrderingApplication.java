@@ -20,6 +20,7 @@ import java.util.function.Consumer;
 
 @SpringBootApplication
 public class OrderingApplication {
+	private static final Logger log = LoggerFactory.getLogger(OrderingApplication.class);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(OrderingApplication.class, args);
@@ -52,7 +53,7 @@ public class OrderingApplication {
 					System.out.println(rCustomer + ": " + productList[rProudct]);
 
 					cOrder order = new cOrder(i, rCustomer, productList[rProudct], rQuantity);
-					//og.info(order.toString());
+					log.info(order.toString());
 					//The binder name "appliance-outbound" is defined in the application.yml.
 					postOrder(new RestTemplate(), order);
 
@@ -67,10 +68,10 @@ public class OrderingApplication {
 
 	// get customer
     public void postOrder(RestTemplate restTemplate, cOrder order) throws Exception {
-		System.out.println("Sending request");
+
 		//String message = restTemplate.getForObject("http://localhost:8181/order" + order, String.class);  
 		String message = restTemplate.postForObject("http://localhost:8181/order", order, String.class);
-		System.out.println("Request sent");
+
 		System.out.println(message);
 	}
 }
