@@ -20,13 +20,12 @@ public class OrderingController {
   @Autowired
   private OrderService orderService;
 
-  // Aggregate root
-  // tag::get-aggregate-root[]
+
   @GetMapping("/orders")
   List<cOrder> all() {
     return orderService.getAllOrders();
   }
-  // end::get-aggregate-root[]
+  
 
   @PostMapping("/order")
   String newOrder(@RequestBody cOrder newOrder) {
@@ -46,6 +45,7 @@ public class OrderingController {
     return orderService.getCustomer(id);
   }
 
+  // get product
   @GetMapping("/getProduct/{id}")
   Product oneProduct(@PathVariable Long id) {
     return orderService.getProduct(id);

@@ -101,6 +101,7 @@ public class OrderService {
       return null;   
     }
 
+    // method to get product
     public Product getProduct(Long id) {
       String productName = repository.findById(id).orElseThrow(() -> new ProductNotFoundExcpetion(id)).getProductName();
       try {

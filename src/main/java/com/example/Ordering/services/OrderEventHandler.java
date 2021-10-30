@@ -46,7 +46,6 @@ public class OrderEventHandler {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("Sending Bridge Request");
         /// TODO send bridge request to BI-Order
      
 
@@ -57,8 +56,7 @@ public class OrderEventHandler {
     }
 
     public void sendMessage(cOrder order) {
-        System.out.println("Message sent");
-        streamBridge.send("appliance-outbound", order);
+        streamBridge.send("order-outbound", order);
     }
 
     

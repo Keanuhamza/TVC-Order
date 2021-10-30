@@ -1,15 +1,15 @@
 server.port: 8181
 spring.cloud.stream:
   bindings:
-    appliance-outbound:
-      destination: appliance-topic
+    order-outbound:
+      destination: order-topic
   kafka.streams.binder:
     brokers: localhost:9092
     configuration:
       commit.interval.ms: 1000
     serdeError: logAndContinue
   kafka.bindings:
-    appliance-outbound:
+    order-outbound:
       producer:
         configuration:
           default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde

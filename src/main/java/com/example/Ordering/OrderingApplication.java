@@ -20,8 +20,7 @@ import java.util.function.Consumer;
 
 @SpringBootApplication
 public class OrderingApplication {
-	private static final Logger log = LoggerFactory.getLogger(OrderingApplication.class);
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(OrderingApplication.class, args);
 		System.out.println("Ordering micro-service has started!");
@@ -33,12 +32,14 @@ public class OrderingApplication {
 			Long i = 1L;
 			try {
 				while (!Thread.currentThread().isInterrupted()){
-					//RNG for order
+
+					// RNG for order
 					Random rng = new Random();
 					int min = 1;
 					int max = 5;
 					int upperBound = max - min + 1;
 					long rCustomer = min + rng.nextInt(upperBound);
+
 					//Generates random product name from array
 					min = 0;
 					max = 4;
@@ -50,15 +51,15 @@ public class OrderingApplication {
 
 					String[] productList = {"Hammer","Spanner","Cake","Apple","Orange"};
 
-					System.out.println(rCustomer + ": " + productList[rProudct]);
-
+					// generate new order
 					cOrder order = new cOrder(i, rCustomer, productList[rProudct], rQuantity);
-					log.info(order.toString());
-					//The binder name "appliance-outbound" is defined in the application.yml.
+					
+					// send new order
 					postOrder(new RestTemplate(), order);
 
 					i++;
-					Thread.sleep(1200);
+					// pause thread for 2 seconds
+					Thread.sleep(2000);
 				}
 			}
 			catch(Exception ignored){}
@@ -69,9 +70,8 @@ public class OrderingApplication {
 	// get customer
     public void postOrder(RestTemplate restTemplate, cOrder order) throws Exception {
 
-		//String message = restTemplate.getForObject("http://localhost:8181/order" + order, String.class);  
 		String message = restTemplate.postForObject("http://localhost:8181/order", order, String.class);
-
+		// print message
 		System.out.println(message);
 	}
 }
